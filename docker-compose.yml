@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+
+  agent:
+    image: RoboCup:latest  # eg, gcr.io/robocup/agent:latest
+    build:
+      dockerfile: .
+      context: ./project
+    environment:  # Any environment variables you need to set in your container
+      VAR1: VAL1
+    volumes:
+      - local_path:container_path
+
+
+  trainer:
+    image: trainer:latest  # eg, gcr.io/robocup/trainer:latest
+    build:
+      dockerfile: ./project
+      context: ./project
+    environment:  # Any environment variables you need to set in your container
+      VAR1: VAL1
+    volumes:
+      - local_path:container_path
